@@ -50,7 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CharacterLocation.cs" />
-    <Compile Include="SuffixBuildException.cs" />
+    <Compile Include="SuffixTreeBuilderException.cs" />
     <Compile Include="SuffixLink.cs" />
     <Compile Include="SuffixTreeBuilder.cs" />
     <Compile Include="SuffixNode.cs" />

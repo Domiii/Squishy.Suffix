@@ -6,8 +6,6 @@ using System.Text;
 namespace Squishy.Suffix
 {
 	/// <summary>
-	/// TODO: Fix SuffixNode.To (node only goes until k / also consider multiple string combos)
-	/// 
 	/// Thee Suffix Tree Builder also represents a Growing Point:
 	/// The Growing Point lies between Parent and Next, in Distance from Parent.
 	/// 
@@ -60,7 +58,7 @@ namespace Squishy.Suffix
 			{
 				if (Distance == 0)
 				{
-					throw new SuffixBuildException("CurrentChar does not exist if we have a distance of 0");
+					throw new SuffixTreeBuilderException("CurrentChar does not exist if we have a distance of 0");
 				}
 				return Next.GetEdgeChar(Distance-1);
 			}
@@ -72,7 +70,7 @@ namespace Squishy.Suffix
 			{
 				if (Distance == 0)
 				{
-					throw new SuffixBuildException("NextChar does not exist if we have a distance of 0");
+					throw new SuffixTreeBuilderException("NextChar does not exist if we have a distance of 0");
 				}
 				return Next.GetEdgeChar(Distance);
 			}
@@ -184,7 +182,7 @@ namespace Squishy.Suffix
 							// move to the location of the next suffix: S[i+1 .. k]
 							Parent.SetNextSuffixLocation(k - nextSuffixLen, k, this);
 #if DEBUG
-							Console.WriteLine("   Moved to next suffix node {0} -> {1} (+{2})", Parent, Next, Distance);
+							Console.WriteLine("   Moved to {0} -> {1} (+{2})", Parent, Next, Distance);
 #endif
 						}
 						else
@@ -192,7 +190,7 @@ namespace Squishy.Suffix
 							// empty substring -> Nothing to traverse
 							if (Parent != Tree.Root)
 							{
-								throw new SuffixBuildException("Unable to build SuffixTree: Empty suffix not starting at root: {0} to {1}",k , k);
+								throw new SuffixTreeBuilderException("Unable to build SuffixTree: Empty suffix not starting at root: {0} to {1}",k , k);
 							}
 						}
 					}
@@ -224,7 +222,7 @@ namespace Squishy.Suffix
 			}
 			else if (Next != Tree.Root)
 			{
-				throw new SuffixBuildException("Unable to build SuffixTree: Internal node did not have a link: " + Next);
+				throw new SuffixTreeBuilderException("Unable to build SuffixTree: Internal node did not have a link: " + Next);
 			}
 			return 0;
 		}

@@ -112,7 +112,7 @@ namespace Squishy.Suffix
 		}
 
 		/// <summary>
-		/// 
+		/// The String that this Tree is composed of
 		/// </summary>
 		public string String
 		{
@@ -123,7 +123,7 @@ namespace Squishy.Suffix
 		/// <summary>
 		/// Necessary when building the tree.
 		/// Is increased with every added character: 
-		/// Nodes that go until "-1" go until this value.
+		/// Nodes with To = "-1", have ActualTo set to this value.
 		/// </summary>
 		internal int StringLength
 		{
