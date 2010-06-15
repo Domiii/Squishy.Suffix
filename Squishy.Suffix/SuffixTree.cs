@@ -14,6 +14,12 @@ namespace Squishy.Suffix
 			Root = new SuffixNode(this, -1, 0);
 		}
 
+		public SuffixNode Root
+		{
+			get;
+			protected set;
+		}
+
 		/// <summary>
 		/// The String that this Tree is composed of.
 		/// TODO: Consider using StringBuilder instead
@@ -33,12 +39,6 @@ namespace Squishy.Suffix
 		{
 			get;
 			set;
-		}
-
-		public SuffixNode Root
-		{
-			get;
-			protected set;
 		}
 
 		/// <summary>

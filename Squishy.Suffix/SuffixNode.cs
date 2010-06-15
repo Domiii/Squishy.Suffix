@@ -11,7 +11,10 @@ namespace Squishy.Suffix
 	{
 		public readonly SuffixTree Tree;
 		public readonly HashSet<SuffixNode> Children = new HashSet<SuffixNode>();
-		public readonly int ChildId;
+		/// <summary>
+		/// Unique identifier of this node within it's tree
+		/// </summary>
+		public readonly int NodeId;
 
 		/// <summary>
 		/// Leaf node ctor
@@ -26,7 +29,7 @@ namespace Squishy.Suffix
 			Tree = tree;
 			From = from;
 			To = to;
-			ChildId = Interlocked.Increment(ref Tree.lastNodeId);
+			NodeId = Interlocked.Increment(ref Tree.lastNodeId);
 		}
 
 		#region Node Members
@@ -48,6 +51,12 @@ namespace Squishy.Suffix
 				}
 			}
 			return null;
+		}
+
+		public int LeafId
+		{ 
+			get;
+			internal set;
 		}
 		#endregion
 
@@ -169,7 +178,7 @@ namespace Squishy.Suffix
 			{
 				return "<Root>";
 			}
-			return string.Format("Node #{0} ([{1} .. {2}] {3})", ChildId, From, To, EdgeString);
+			return string.Format("Node #{0} ([{1} .. {2}] {3})", NodeId, From, To, EdgeString);
 		}
 	}
 }
