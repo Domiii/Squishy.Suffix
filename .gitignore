@@ -1,0 +1,9 @@
+﻿_ReSharper.Domi
+*.user
+_ReSharper.Domi
+Domi.Suffix.Tests/bin
+Domi.Suffix.Tests/obj
+*/_ReSharper.Domi.*
+Domi.Suffix/bin
+Domi.Suffix/obj
+*.suo
