@@ -1,9 +1,9 @@
-﻿_ReSharper.Domi
+﻿_ReSharper.Squishy
 *.user
-_ReSharper.Domi
-Domi.Suffix.Tests/bin
-Domi.Suffix.Tests/obj
-*/_ReSharper.Domi.*
-Domi.Suffix/bin
-Domi.Suffix/obj
+_ReSharper.Squishy
+Squishy.Suffix.Tests/bin
+Squishy.Suffix.Tests/obj
+*/_ReSharper.Squishy.*
+Squishy.Suffix/bin
+Squishy.Suffix/obj
 *.suo

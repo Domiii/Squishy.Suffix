@@ -23,7 +23,7 @@ namespace Squishy.Suffix
 			}
 			tree.String = s;
 			var builder = new SuffixTreeBuilder(tree);
-			builder.BuildTree(s);
+			builder.BuildTree();
 			return tree;
 		}
 
@@ -80,8 +80,9 @@ namespace Squishy.Suffix
 		/// Add all nodes for the given string to the Tree
 		/// </summary>
 		/// <param name="str"></param>
-		protected void BuildTree(string str)
+		protected internal void BuildTree()
 		{
+			var str = Tree.String;
 #if DEBUG
 			Console.WriteLine("Adding String: {0}", str);
 #endif

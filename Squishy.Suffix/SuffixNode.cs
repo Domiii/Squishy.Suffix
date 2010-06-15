@@ -14,7 +14,7 @@ namespace Squishy.Suffix
 		public readonly int ChildId;
 
 		/// <summary>
-		/// Leaf node ctro
+		/// Leaf node ctor
 		/// </summary>
 		internal SuffixNode(SuffixTree tree, int from) :
 			this(tree, from, -1)

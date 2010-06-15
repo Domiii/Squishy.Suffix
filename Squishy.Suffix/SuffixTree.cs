@@ -5,103 +5,6 @@ using System.Text;
 
 namespace Squishy.Suffix
 {
-	public class SuffixTree<T> : SuffixTree
-	{
-		protected int firstUnusedIndex;
-
-		public SuffixTree()
-			: this(10)
-		{
-		}
-
-		public SuffixTree(int initCapacity)
-			: this(initCapacity, 75)
-		{
-		}
-
-		public SuffixTree(int initCapacity, int pctInflationFactor)
-		{
-			Pairs = new KeyValuePair<string, T>[initCapacity];
-			InflactionFactorPct = pctInflationFactor;
-			firstUnusedIndex = 0;
-			Count = 0;
-		}
-
-		public int InflactionFactorPct
-		{
-			get;
-			set;
-		}
-
-		public int Count
-		{
-			get;
-			protected set;
-		}
-
-		public KeyValuePair<string, T>[] Pairs
-		{
-			get;
-			private set;
-		}
-
-		public void Add(IEnumerable<KeyValuePair<string, T>> pairs)
-		{
-			var count = pairs.Count();
-			var builder = new StringBuilder(count * 20);
-			int i = 0;
-			foreach (var pair in pairs)
-			{
-				builder.Append(pair.Key);
-				if (i < count - 1)
-				{
-					builder.Append(Separator);
-				}
-			}
-
-			foreach (var pair in pairs)
-			{
-				// add suffixes to tree
-				Count++;
-				// TODO: Fix me
-				//Traverse(pair.Key);
-			}
-		}
-
-		public void Add(KeyValuePair<string, T> pair)
-		{
-			Count++;
-			if (firstUnusedIndex >= Pairs.Length)
-			{
-				// ensure Values array is big enough
-				// Hint: Resizing is amortized linear for all values added in total, 
-				//       as long as we use a factor, rather than a constant threshold for inflation
-				var values = new KeyValuePair<string, T>[(Count * InflactionFactorPct + 50) / 100];	// rounding included
-				Array.Copy(Pairs, values, Pairs.Length);
-				Pairs = values;
-			}
-
-			// add pair
-			Pairs[firstUnusedIndex] = pair;
-
-			// find next unused index
-			for (; Pairs.Length < firstUnusedIndex && !Equals(Pairs[firstUnusedIndex], default(T)); firstUnusedIndex++) ;
-
-			// add to string
-			var str = pair.Key;
-			if (String.Length > 0)
-			{
-				// add separator
-				str = Separator + str;
-			}
-			String += str;
-
-			// add suffixes to tree
-			// TODO: Fix me
-			//Traverse(pair.Key);
-		}
-	}
-
 	public class SuffixTree
 	{
 		internal int lastNodeId = -1;
@@ -112,7 +15,8 @@ namespace Squishy.Suffix
 		}
 
 		/// <summary>
-		/// The String that this Tree is composed of
+		/// The String that this Tree is composed of.
+		/// TODO: Consider using StringBuilder instead
 		/// </summary>
 		public string String
 		{
@@ -138,7 +42,8 @@ namespace Squishy.Suffix
 		}
 
 		/// <summary>
-		/// Need to make sure
+		/// The separator will ensure that every suffix ends in a leaf.
+		/// TODO: Need to make sure that this is not contained in any string
 		/// </summary>
 		internal char Separator
 		{

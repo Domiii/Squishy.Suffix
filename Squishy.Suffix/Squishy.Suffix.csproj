@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CharacterLocation.cs" />
+    <Compile Include="SearchableDictionary.cs" />
     <Compile Include="SuffixTreeBuilderException.cs" />
     <Compile Include="SuffixLink.cs" />
     <Compile Include="SuffixTreeBuilder.cs" />
