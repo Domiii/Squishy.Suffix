@@ -1,8 +1,0 @@
-D:\coding\C#\Domi\Domi.Suffix\obj\x86\Debug\ResolveAssemblyReference.cache
-D:\coding\C#\Domi\Domi.Suffix\obj\x86\Debug\Domi.Suffix.Properties.Resources.resources
-D:\coding\C#\Domi\Domi.Suffix\obj\x86\Debug\GenerateResource.read.1.tlog
-D:\coding\C#\Domi\Domi.Suffix\obj\x86\Debug\GenerateResource.write.1.tlog
-D:\coding\C#\Domi\Domi.Suffix\bin\Debug\Domi.Suffix.pdb
-D:\coding\C#\Domi\Domi.Suffix\obj\x86\Debug\Domi.Suffix.pdb
-D:\coding\C#\Domi\Domi.Suffix\bin\Debug\Domi.Suffix.dll
-D:\coding\C#\Domi\Domi.Suffix\obj\x86\Debug\Domi.Suffix.dll
