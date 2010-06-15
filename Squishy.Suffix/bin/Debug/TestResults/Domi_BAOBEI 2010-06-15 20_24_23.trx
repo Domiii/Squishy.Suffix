@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="daa98bdb-67f1-4efc-bd37-0ee7ee8dd5b5" name="Domi@BAOBEI 2010-06-15 20:24:23" runUser="baobei\Domi" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Default Test Settings" id="db2b810b-660d-4356-8790-15fb45349b69">
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+    <Deployment runDeploymentRoot="Domi_BAOBEI 2010-06-15 20_24_23" />
+  </TestSettings>
+  <Times creation="2010-06-15T20:24:23.6324755+08:00" queuing="2010-06-15T20:24:24.3275152+08:00" start="2010-06-15T20:24:24.8565455+08:00" finish="2010-06-15T20:24:25.3865758+08:00" />
+  <ResultSummary outcome="Completed">
+    <Counters total="1" executed="1" passed="1" error="0" failed="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="TestSimple" storage="d:\coding\c#\domi\domi.suffix\bin\debug\domi.suffix.exe" id="9f1a2cd1-1104-0086-6596-eb19b7cb3894">
+      <Execution timeOut="1800000" id="8fb331dd-3637-4b45-b674-18509077cdda" />
+      <TestMethod codeBase="D:/coding/C#/Domi/Domi.Suffix/bin/Debug/Domi.Suffix.EXE" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Domi.Suffix.Tests.SuffixTreeBuilderTest, Domi.Suffix, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestSimple" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="9f1a2cd1-1104-0086-6596-eb19b7cb3894" executionId="8fb331dd-3637-4b45-b674-18509077cdda" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="8fb331dd-3637-4b45-b674-18509077cdda" testId="9f1a2cd1-1104-0086-6596-eb19b7cb3894" testName="TestSimple" computerName="BAOBEI" duration="00:00:00.0707656" startTime="2010-06-15T20:24:24.9765524+08:00" endTime="2010-06-15T20:24:25.1985651+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8fb331dd-3637-4b45-b674-18509077cdda">
+      <Output>
+        <StdOut>Starting round k = 1...
+ i = 0...
+ Traversed to a
+Starting round k = 2...
+ i = 1...
+ Added leaf ÿ to new branch: a (0 to 1)
+ i = 2...
+ Added leaf ÿ to existing branch:  (0 to 0)
+ Added link from a (0 to 1) to  (0 to 0)</StdOut>
+      </Output>
+    </UnitTestResult>
+  </Results>
+</TestRun>

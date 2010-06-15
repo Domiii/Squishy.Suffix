@@ -1,0 +1,4 @@
+<Modules>
+  <Module PersistentId="8BB58376-8EBD-4993-82D1-1B26023F9519" ModuleId="Squishy.Suffix.Tests" />
+  <Module PersistentId="FA94D813-FA80-46DB-8E2E-113AB8421F6D" ModuleId="Squishy.Suffix" />
+</Modules>

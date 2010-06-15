@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="0297ac26-12fb-4c8c-ab03-7fc9693a8810" name="Domi@BAOBEI 2010-06-15 21:38:47" runUser="baobei\Domi" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="95a22874-85bc-4819-941e-f55c2de6922e">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="Domi_BAOBEI 2010-06-15 21_38_47" />
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2010-06-15T21:38:47.3637863+08:00" queuing="2010-06-15T21:38:47.7528086+08:00" start="2010-06-15T21:38:48.2648378+08:00" finish="2010-06-15T21:38:56.5383111+08:00" />
+  <ResultSummary outcome="Failed">
+    <Counters total="1" executed="1" error="0" failed="1" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" passed="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="TestSlideTree" storage="d:\coding\c#\domi\domi.suffix.tests\bin\debug\domi.suffix.tests.dll" id="d83ee658-ca92-33b2-327b-aa7983891848">
+      <Execution timeOut="1800000" id="6e87751e-e53e-4d71-9516-a3f86d4b65cd" />
+      <TestMethod codeBase="D:/coding/C#/Domi/Domi.Suffix.Tests/bin/Debug/Domi.Suffix.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Domi.Suffix.Tests.SuffixTreeBuilderTest, Domi.Suffix.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestSlideTree" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="d83ee658-ca92-33b2-327b-aa7983891848" executionId="6e87751e-e53e-4d71-9516-a3f86d4b65cd" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="6e87751e-e53e-4d71-9516-a3f86d4b65cd" testId="d83ee658-ca92-33b2-327b-aa7983891848" testName="TestSlideTree" computerName="BAOBEI" duration="00:00:07.8578467" startTime="2010-06-15T21:38:48.3948453+08:00" endTime="2010-06-15T21:38:56.3723016+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6e87751e-e53e-4d71-9516-a3f86d4b65cd">
+      <Output>
+        <StdOut>Adding String: bbabbaabÿ
+k = 1: bb
+k = 2: bba
+k = 3: bbab
+k = 4: bbabb
+k = 5: bbabba
+k = 6: bbabbaa
+k = 7: bbabbaab
+k = 8: bbabbaabÿ</StdOut>
+        <ErrorInfo>
+          <Message>Assert.IsTrue failed. </Message>
+          <StackTrace>   at Domi.Suffix.Tests.SuffixTreeBuilderTest.TestSlideTree() in D:\coding\C#\Domi\Domi.Suffix.Tests\SuffixTreeBuilderTest.cs:line 36
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+  </Results>
+</TestRun>

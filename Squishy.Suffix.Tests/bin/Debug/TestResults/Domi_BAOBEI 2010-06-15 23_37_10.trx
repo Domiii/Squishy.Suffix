@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="12146510-ed0e-4871-9c6c-c4530520e22c" name="Domi@BAOBEI 2010-06-15 23:37:10" runUser="baobei\Domi" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Default Test Settings" id="4363e3f9-efdf-43dd-99c0-23d7853f43d5">
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+    <Deployment runDeploymentRoot="Domi_BAOBEI 2010-06-15 23_37_10" />
+  </TestSettings>
+  <Times creation="2010-06-15T23:37:10.3570543+08:00" queuing="2010-06-15T23:37:11.0660948+08:00" start="2010-06-15T23:37:11.5771241+08:00" finish="2010-06-15T23:37:12.6031828+08:00" />
+  <ResultSummary outcome="Completed">
+    <Counters total="2" executed="2" passed="2" error="0" failed="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="TestSlideTree" storage="d:\coding\c#\domi\squishy.suffix.tests\bin\debug\squishy.suffix.tests.dll" id="febac8c3-c5df-5c7a-98ea-9cfa04b7233d">
+      <Execution timeOut="1800000" id="9a7c9182-5e28-4cf9-a94e-d1f2e721dc94" />
+      <TestMethod codeBase="D:/coding/C#/Domi/Squishy.Suffix.Tests/bin/Debug/Squishy.Suffix.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Squishy.Suffix.Tests.SuffixTreeTest, Squishy.Suffix.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestSlideTree" />
+    </UnitTest>
+    <UnitTest name="TestSimpleTree" storage="d:\coding\c#\domi\squishy.suffix.tests\bin\debug\squishy.suffix.tests.dll" id="4e0bd34c-8b6e-ae28-c7bb-3f50715d8180">
+      <Execution timeOut="1800000" id="7529b366-6832-475f-8176-75a2139acb01" />
+      <TestMethod codeBase="D:/coding/C#/Domi/Squishy.Suffix.Tests/bin/Debug/Squishy.Suffix.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Squishy.Suffix.Tests.SuffixTreeTest, Squishy.Suffix.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestSimpleTree" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="4e0bd34c-8b6e-ae28-c7bb-3f50715d8180" executionId="7529b366-6832-475f-8176-75a2139acb01" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="febac8c3-c5df-5c7a-98ea-9cfa04b7233d" executionId="9a7c9182-5e28-4cf9-a94e-d1f2e721dc94" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="7529b366-6832-475f-8176-75a2139acb01" testId="4e0bd34c-8b6e-ae28-c7bb-3f50715d8180" testName="TestSimpleTree" computerName="BAOBEI" duration="00:00:00.0955518" startTime="2010-06-15T23:37:11.7131318+08:00" endTime="2010-06-15T23:37:11.9281441+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7529b366-6832-475f-8176-75a2139acb01">
+      <Output>
+        <StdOut>Adding String: aaÿ
+k = 1: aa
+ i = 1
+  Traversed to a
+k = 2: aaÿ
+ i = 1
+   Added leaf ÿ to new branch: Node #2 ([0 .. 0] a)
+   Moved to Root
+ i = 2
+   Added leaf ÿ to existing branch: &lt;Root&gt;
+   Added link from Node #2 ([0 .. 0] a) to &lt;Root&gt;</StdOut>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="9a7c9182-5e28-4cf9-a94e-d1f2e721dc94" testId="febac8c3-c5df-5c7a-98ea-9cfa04b7233d" testName="TestSlideTree" computerName="BAOBEI" duration="00:00:00.0013620" startTime="2010-06-15T23:37:12.0131490+08:00" endTime="2010-06-15T23:37:12.0501511+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9a7c9182-5e28-4cf9-a94e-d1f2e721dc94">
+      <Output>
+        <StdOut>Adding String: bbabbaabÿ
+k = 1: bb
+ i = 1
+  Traversed to b
+k = 2: bba
+ i = 1
+   Added leaf a to new branch: Node #2 ([0 .. 0] b)
+   Moved to Root
+ i = 2
+   Added leaf a to existing branch: &lt;Root&gt;
+   Added link from Node #2 ([0 .. 0] b) to &lt;Root&gt;
+k = 3: bbab
+ i = 3
+  Traversed to b
+k = 4: bbabb
+ i = 3
+  Traversed to b
+k = 5: bbabba
+ i = 3
+  Traversed to a
+k = 6: bbabbaa
+ i = 3
+   Added leaf a to new branch: Node #5 ([1 .. 2] ba)
+   Moved to Root
+   Moved to next suffix node Node #2 ([0 .. 0] b) -&gt; Node #3 ([2 .. -1] abbaa) (+1)
+ i = 4
+   Added leaf a to new branch: Node #7 ([2 .. 2] a)
+   Added link from Node #5 ([1 .. 2] ba) to Node #7 ([2 .. 2] a)
+   Moved to Root
+   Moved to next suffix node &lt;Root&gt; -&gt; Node #4 ([2 .. -1] abbaa) (+1)
+ i = 5
+   Added leaf a to new branch: Node #9 ([2 .. 2] a)
+   Added link from Node #7 ([2 .. 2] a) to Node #9 ([2 .. 2] a)
+   Moved to Root
+ i = 6
+  Traversed to a
+   Added link from Node #9 ([2 .. 2] a) to &lt;Root&gt;
+k = 7: bbabbaab
+ i = 6
+  Traversed to b
+k = 8: bbabbaabÿ
+ i = 6
+   Added leaf ÿ to new branch: Node #11 ([3 .. 3] b)
+   Moved to Root
+   Moved to next suffix node Node #2 ([0 .. 0] b) -&gt; Node #2 ([0 .. 0] b) (+0)
+ i = 7
+   Added leaf ÿ to existing branch: Node #2 ([0 .. 0] b)
+   Added link from Node #11 ([3 .. 3] b) to Node #2 ([0 .. 0] b)
+   Moved along link to: &lt;Root&gt;
+ i = 8
+   Added leaf ÿ to existing branch: &lt;Root&gt;</StdOut>
+      </Output>
+    </UnitTestResult>
+  </Results>
+</TestRun>

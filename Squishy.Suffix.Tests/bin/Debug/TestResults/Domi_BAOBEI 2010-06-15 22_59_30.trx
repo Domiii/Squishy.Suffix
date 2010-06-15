@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="f5e8884c-46b4-4535-b08a-eb28efe0f5f8" name="Domi@BAOBEI 2010-06-15 22:59:30" runUser="baobei\Domi" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="95a22874-85bc-4819-941e-f55c2de6922e">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="Domi_BAOBEI 2010-06-15 22_59_30" />
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2010-06-15T22:59:30.9108214+08:00" queuing="2010-06-15T22:59:31.4918546+08:00" start="2010-06-15T22:59:31.9638816+08:00" finish="2010-06-15T22:59:32.5619158+08:00" />
+  <ResultSummary outcome="Completed">
+    <Counters total="1" executed="1" passed="1" error="0" failed="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="TestSlideTree" storage="d:\coding\c#\domi\domi.suffix.tests\bin\debug\domi.suffix.tests.dll" id="d83ee658-ca92-33b2-327b-aa7983891848">
+      <Execution timeOut="1800000" id="ea117e45-7d51-448f-991f-e6e725d55700" />
+      <TestMethod codeBase="D:/coding/C#/Domi/Domi.Suffix.Tests/bin/Debug/Domi.Suffix.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Domi.Suffix.Tests.SuffixTreeBuilderTest, Domi.Suffix.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestSlideTree" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="d83ee658-ca92-33b2-327b-aa7983891848" executionId="ea117e45-7d51-448f-991f-e6e725d55700" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="ea117e45-7d51-448f-991f-e6e725d55700" testId="d83ee658-ca92-33b2-327b-aa7983891848" testName="TestSlideTree" computerName="BAOBEI" duration="00:00:00.0594549" startTime="2010-06-15T22:59:32.1128901+08:00" endTime="2010-06-15T22:59:32.3429033+08:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ea117e45-7d51-448f-991f-e6e725d55700">
+      <Output>
+        <StdOut>Adding String: bbabbaabÿ
+k = 1: bb
+ i = 1
+  Traversed to b
+k = 2: bba
+ i = 1
+   Added leaf a to new branch: Node #2 ([0 .. 0] b)
+   Moved to Root
+ i = 2
+   Added leaf a to existing branch: &lt;Root&gt;
+   Added link from Node #2 ([0 .. 0] b) to &lt;Root&gt;
+k = 3: bbab
+ i = 3
+  Traversed to b
+k = 4: bbabb
+ i = 3
+  Traversed to b
+k = 5: bbabba
+ i = 3
+  Traversed to a
+k = 6: bbabbaa
+ i = 3
+   Added leaf a to new branch: Node #5 ([1 .. 2] ba)
+   Moved to Root
+   Moved to next suffix node Node #2 ([0 .. 0] b) -&gt; Node #3 ([2 .. -1] abbaa) (+1)
+ i = 4
+   Added leaf a to new branch: Node #7 ([2 .. 2] a)
+   Added link from Node #5 ([1 .. 2] ba) to Node #7 ([2 .. 2] a)
+   Moved to Root
+   Moved to next suffix node &lt;Root&gt; -&gt; Node #4 ([2 .. -1] abbaa) (+1)
+ i = 5
+   Added leaf a to new branch: Node #9 ([2 .. 2] a)
+   Added link from Node #7 ([2 .. 2] a) to Node #9 ([2 .. 2] a)
+   Moved to Root
+ i = 6
+  Traversed to a
+   Added link from Node #9 ([2 .. 2] a) to &lt;Root&gt;
+k = 7: bbabbaab
+ i = 6
+  Traversed to b
+k = 8: bbabbaabÿ
+ i = 6
+   Added leaf ÿ to new branch: Node #11 ([3 .. 3] b)
+   Moved to Root
+   Moved to next suffix node Node #2 ([0 .. 0] b) -&gt; Node #2 ([0 .. 0] b) (+0)
+ i = 7
+   Added leaf ÿ to existing branch: Node #2 ([0 .. 0] b)
+   Added link from Node #11 ([3 .. 3] b) to Node #2 ([0 .. 0] b)
+   Moved along link to: &lt;Root&gt;
+ i = 8
+   Added leaf ÿ to existing branch: &lt;Root&gt;</StdOut>
+      </Output>
+    </UnitTestResult>
+  </Results>
+</TestRun>
