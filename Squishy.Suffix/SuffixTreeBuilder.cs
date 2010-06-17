@@ -36,7 +36,7 @@ namespace Squishy.Suffix
 		public SuffixTreeBuilder(SuffixTree tree)
 		{
 			Tree = tree;
-			Parent = Next = tree.Root;
+			CurrentNode = tree.Root;
 		}
 
 		public SuffixTree Tree
@@ -48,19 +48,7 @@ namespace Squishy.Suffix
 		{
 			get
 			{
-				return (Next == Tree.Root ? 0 : Next.From) + Distance;
-			}
-		}
-
-		public char CurrentChar
-		{
-			get
-			{
-				if (Distance == 0)
-				{
-					throw new SuffixTreeBuilderException("CurrentChar does not exist if we have a distance of 0");
-				}
-				return Next.GetEdgeChar(Distance-1);
+				return (CurrentNode == Tree.Root ? 0 : CurrentNode.From) + Distance;
 			}
 		}
 
@@ -70,9 +58,9 @@ namespace Squishy.Suffix
 			{
 				if (Distance == 0)
 				{
-					throw new SuffixTreeBuilderException("NextChar does not exist if we have a distance of 0");
+					throw new SuffixTreeBuilderException("NextChar is ambiguous, if we have a distance of 0");
 				}
-				return Next.GetEdgeChar(Distance);
+				return CurrentNode.GetEdgeChar(Distance);
 			}
 		}
 
@@ -92,10 +80,10 @@ namespace Squishy.Suffix
 			}
 
 			// add first node to tree
-			Parent  = Next = Tree.Root;
+			CurrentNode = Tree.Root;
 			Distance = 0;
 
-			Tree.Root.Children.Add(new SuffixNode(Tree, 0));
+			new SuffixNode(Tree.Root, 0);
 			Tree.StringLength = 1;
 
 			var i = 1;
@@ -107,7 +95,6 @@ namespace Squishy.Suffix
 
 				// iterate over all suffixes for each prefix
 				var c = str[k];
-				var lastJumpLength = -1;
 				SuffixNode newLinkStart = null;
 #if DEBUG
 				Console.WriteLine("k = {0}: {1}", k, str.Substring(0, k+1));
@@ -118,7 +105,8 @@ namespace Squishy.Suffix
 					Console.WriteLine(" i = {0}", i);
 #endif
 					
-					var lastNode = Next;
+					// remember the node that we are on, before going down the tree
+					var lastNode = CurrentNode;
 
 					if (TraverseToChild(c))
 					{
@@ -128,7 +116,8 @@ namespace Squishy.Suffix
 						if (newLinkStart != null)
 						{
 							// create the link towards the new branch node, from the branch that we created in the last iteration
-							AddLink(newLinkStart, lastNode, lastJumpLength);
+							AddLink(newLinkStart, lastNode);
+							newLinkStart = null;
 						}
 
 						// One step along the path, then move to the next prefix
@@ -141,19 +130,16 @@ namespace Squishy.Suffix
 						var branchExisted = AddBranch(k);
 
 						// the branch node that is parent to the leaf of character c
-						var branch = Next;
-#if DEBUG
-						Console.WriteLine("   Added leaf {0} {1}: {2}", c, branchExisted ? "to existing branch" : "to new branch", branch);
-#endif
+						var branch = CurrentNode;
 
 						if (newLinkStart != null)
 						{
 							// create the link towards the new branch node, from the branch that we created in the last iteration
-							AddLink(newLinkStart, branch, lastJumpLength);
+							AddLink(newLinkStart, branch);
 						}
 
 						// the length of the next suffix
-						var nextSuffixLen = k - i - 1;
+						int nextSuffixLen;
 
 						if (branchExisted)
 						{
@@ -162,46 +148,51 @@ namespace Squishy.Suffix
 							//  -> don't add a new link
 							newLinkStart = null;
 
-							//  -> Travel to linked node and subtract saved length
-							nextSuffixLen -= MoveToLink(branch);
+							// don't need to step down
+							nextSuffixLen = 0;
+
+							//  -> Travel to linked node
+							MoveToLink(branch);
 						}
 						else
 						{
 							// remember the branch node, so we can add the link in the next iteration
 							newLinkStart = branch;
-							lastJumpLength = nextSuffixLen;
 
-							// find new link, starting from root
-							MoveTo(Tree.Root);
-#if DEBUG
-							Console.WriteLine("   Moved to Root");
-#endif
+							// step down from the linked node the exact edge, that we now move up
+							nextSuffixLen = branch.EdgeLength;
+
+							if (branch.Parent == Tree.Root)
+							{
+								// Move to root (we should be (almost) done now)
+								MoveTo(Tree.Root);
+
+								// If we went back to the root, we need to exclude the first character specifically
+								nextSuffixLen--;
+							}
+							else
+							{
+								// jump to link of parent of branch
+								MoveToLink(branch.Parent);
+							}
 						}
 						
 						if (nextSuffixLen > 0)
 						{
 							// move to the location of the next suffix: S[i+1 .. k]
-							Parent.SetNextSuffixLocation(k - nextSuffixLen, k, this);
+							LastNode.SetNextSuffixLocation(k - nextSuffixLen, k, this);
 #if DEBUG
-							Console.WriteLine("   Moved to {0} -> {1} (+{2})", Parent, Next, Distance);
+							Console.WriteLine("   Moved to " + this);
 #endif
-						}
-						else
-						{
-							// empty substring -> Nothing to traverse
-							if (Parent != Tree.Root)
-							{
-								throw new SuffixTreeBuilderException("Unable to build SuffixTree: Empty suffix not starting at root: {0} to {1}",k , k);
-							}
 						}
 					}
 				}
 			}
 
-			if (Parent != Tree.Root)
+			if (LastNode != Tree.Root)
 			{
-				// something went wrong (str must end with unique Separator)
-				throw new Exception("Error while building tree for: " + str);
+				// something went wrong (last step must be adding the unique Separator leaf to the root)
+				throw new SuffixTreeBuilderException("Error while building tree for: " + str);
 			}
 		}
 
@@ -209,7 +200,7 @@ namespace Squishy.Suffix
 		/// Move to the link that the given branch links to
 		/// </summary>
 		/// <returns>The length of the substring for that link</returns>
-		private int MoveToLink(SuffixNode branch)
+		private void MoveToLink(SuffixNode branch)
 		{
 			SuffixLink link;
 			if (Links.TryGetValue(branch, out link))
@@ -217,29 +208,27 @@ namespace Squishy.Suffix
 				// Move to link and return saved length
 				MoveTo(link.Node);
 #if DEBUG
-				Console.WriteLine("   Moved along link to: {0}", Next);
+				Console.WriteLine("   Moved along link to: {0}", CurrentNode);
 #endif
-				return link.Length;
 			}
-			else if (Next != Tree.Root)
+			else if (CurrentNode != Tree.Root)
 			{
-				throw new SuffixTreeBuilderException("Unable to build SuffixTree: Internal node did not have a link: " + Next);
+				throw new SuffixTreeBuilderException("Unable to build SuffixTree: Internal node did not have a link: " + CurrentNode);
 			}
-			return 0;
 		}
 
 		/// <summary>
 		/// Adds a new link
 		/// </summary>
-		private void AddLink(SuffixNode startNode, SuffixNode linkedNode, int length)
+		private void AddLink(SuffixNode startNode, SuffixNode linkedNode)
 		{
 #if DEBUG
 			Console.WriteLine("   Added link from {0} to {1}", startNode, linkedNode);
 #endif
+			// link is only a simple pointer
 			var newLink = new SuffixLink
 			{
-				Node = linkedNode,
-				Length = length
+				Node = linkedNode
 			};
 			Links.Add(startNode, newLink);
 		}
@@ -255,7 +244,7 @@ namespace Squishy.Suffix
 			{
 				// GP sits on a node
 				SuffixNode node = null;
-				foreach (var child in Parent.Children)
+				foreach (var child in LastNode.Children)
 				{
 					if (child.FirstEdgeChar == c)
 					{
@@ -275,7 +264,7 @@ namespace Squishy.Suffix
 					else
 					{
 						// move in direction of the node
-						Next = node;
+						CurrentNode = node;
 						Distance = 1;
 					}
 					return true;
@@ -289,10 +278,10 @@ namespace Squishy.Suffix
 				if (NextChar == c)
 				{
 					// Char exists
-					if (Distance == Next.EdgeLength-1)
+					if (Distance == CurrentNode.EdgeLength-1)
 					{
 						// move onto a node
-						MoveTo(Next);
+						MoveTo(CurrentNode);
 					}
 					else
 					{
@@ -313,18 +302,19 @@ namespace Squishy.Suffix
 		/// <returns>Whether the branch node already existed</returns>
 		protected bool AddBranch(int k)
 		{
-			var parent = Parent;
+			var parent = LastNode;
 			if (Distance != 0)
 			{
 				// Adding branch between two nodes
-				var next = Next;
+				var next = CurrentNode;
 
 				// split edge & add branch node
 				// (next also describes the edge between parent and next)
-				var branchNode = new SuffixNode(Tree, next.From, next.From + Distance-1);
-				parent.Children.Remove(next);		// Hashset Add/Remove operations are constant
+				var branchNode = new SuffixNode(parent, next.From, next.From + Distance - 1);
+				parent.Children.Remove(next);		// HashSet Add/Remove operations are constant
 				parent.Children.Add(branchNode);
 				branchNode.Children.Add(next);
+				next.Parent = branchNode;
 				next.From += Distance;
 
 				// branchNode becomes parent of the new leaf
@@ -333,10 +323,14 @@ namespace Squishy.Suffix
 			// else Add branch to existing node
 
 			// add new leaf
-			var leaf = new SuffixNode(Tree, k);
+			var leaf = new SuffixNode(parent, k);
 			parent.Children.Add(leaf);
 
-			Next = parent;
+#if DEBUG
+			Console.WriteLine("   Added leaf {0} {1}: {2}", leaf, Distance == 0 ? "to existing branch" : "to new branch", parent);
+#endif
+
+			CurrentNode = parent;
 			return Distance == 0;
 		}
 	}

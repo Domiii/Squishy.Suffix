@@ -17,14 +17,29 @@ namespace Squishy.Suffix
 		public readonly int NodeId;
 
 		/// <summary>
-		/// Leaf node ctor
+		/// Ctor for root
 		/// </summary>
-		internal SuffixNode(SuffixTree tree, int from) :
-			this(tree, from, -1)
+		internal SuffixNode(SuffixTree tree) :
+			this(tree, -1, 0)
 		{
 		}
 
-		internal SuffixNode(SuffixTree tree, int from, int to)
+		/// <summary>
+		/// Ctor for leaves
+		/// </summary>
+		internal SuffixNode(SuffixNode parent, int from) :
+			this(parent, from, -1)
+		{
+		}
+
+		internal SuffixNode(SuffixNode parent, int from, int to) : 
+			this(parent.Tree, from, to)
+		{
+			Parent = parent;
+			Parent.Children.Add(this);
+		}
+
+		private SuffixNode(SuffixTree tree, int from, int to)
 		{
 			Tree = tree;
 			From = from;
@@ -33,6 +48,12 @@ namespace Squishy.Suffix
 		}
 
 		#region Node Members
+		public SuffixNode Parent
+		{
+			get;
+			internal set;
+		}
+
 		public bool IsLeaf
 		{
 			get { return Children != null; }
@@ -113,6 +134,9 @@ namespace Squishy.Suffix
 			}
 		}
 
+		/// <summary>
+		/// The offset's character along the edge, counting from <see cref="From"/>
+		/// </summary>
 		public char GetEdgeChar(int offset)
 		{
 			if (offset >= EdgeLength)
@@ -140,12 +164,11 @@ namespace Squishy.Suffix
 		/// </summary>
 		public void SetNextSuffixLocation(int from, int to, CharacterLocation location)
 		{
-			SuffixNode parent = this, curNode = this;			// current Node and it's parent
+			SuffixNode curNode = this;			// current Node
 			var remaining = 0;
 			for (var idx = from; idx < to; )
 			{
 				var c = Tree.String[idx];
-				parent = curNode;
 				curNode = curNode.GetChild(c);
 				var edgeLen = curNode.EdgeLength;
 				remaining = to - idx;
@@ -168,7 +191,7 @@ namespace Squishy.Suffix
 				}
 			}
 
-			location.MoveTo(parent, curNode, remaining);
+			location.MoveTo(curNode, remaining);
 		}
 		#endregion
 

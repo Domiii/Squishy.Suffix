@@ -11,7 +11,7 @@ namespace Squishy.Suffix
 
 		public SuffixTree()
 		{
-			Root = new SuffixNode(this, -1, 0);
+			Root = new SuffixNode(this);
 		}
 
 		public SuffixNode Root
@@ -51,9 +51,10 @@ namespace Squishy.Suffix
 		}
 
 		/// <summary>
-		/// Returns whether the given searchTerm is contained in this Tree's String
+		/// Returns the node/edge on which the given searchTerm terminates, 
+		/// or null, if searchTerm is not inside this Tree.
 		/// </summary>
-		public bool Contains(string searchTerm)
+		public SuffixNode GetNodeOrEdge(string searchTerm)
 		{
 			var curNode = Root;
 			for (var i = 0; i < searchTerm.Length; )
@@ -74,7 +75,7 @@ namespace Squishy.Suffix
 				}
 				if (!found)
 				{
-					return false;
+					return null;
 				}
 
 				// move along the edge towards the child:
@@ -83,11 +84,19 @@ namespace Squishy.Suffix
 				{
 					if (String[curNode.From + j] != searchTerm[i])
 					{
-						return false;
+						return null;
 					}
 				}
 			}
-			return true;
+			return curNode;
+		}
+
+		/// <summary>
+		/// Returns whether the given searchTerm is contained in this Tree's String
+		/// </summary>
+		public bool Contains(string searchTerm)
+		{
+			return GetNodeOrEdge(searchTerm) != null;
 		}
 	}
 }
