@@ -58,6 +58,7 @@ namespace Squishy.Suffix
 			private set;
 		}
 
+		#region Creation
 		private void SetPairs(KeyValuePair<string, T>[] pairs, int estimatedStrLength)
 		{
 			var sb = new StringBuilder(estimatedStrLength);
@@ -74,6 +75,31 @@ namespace Squishy.Suffix
 
 			// TODO: Maintain lists of values that belong to each node
 		}
+		#endregion
+
+		#region Queries
+		public T[] this[params string[] inclusiveQueries]
+		{
+			get
+			{
+				var node = GetLowestCommonAncestor(inclusiveQueries);
+				throw new NotImplementedException();
+			}
+		}
+
+		public T[] this[string[] inclusiveQueries, string[] optionalQueries]
+		{
+			get
+			{
+				throw new NotImplementedException();
+			}
+		}
+
+		public SuffixNode GetLowestCommonAncestor(params string[] queries)
+		{
+			throw new NotImplementedException();
+		}
+		#endregion
 
 		#region Add (NIY)
 		public void Add(IEnumerable<KeyValuePair<string, T>> pairs)

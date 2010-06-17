@@ -15,5 +15,6 @@ Notes:
 	3. The code has a lot of documentation - Feel free to ask me, if anything is unclear
 
 Sample Output:
-	http://pastebin.com/JEw8Ym5a
-	http://pastebin.com/NfPHwEh7
+	Sample tree 1: http://pastebin.com/JEw8Ym5a
+	Sample tree 2: http://pastebin.com/NfPHwEh7
+	Performance: http://pastebin.com/mY5ZnvGs

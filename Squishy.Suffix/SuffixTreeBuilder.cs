@@ -65,9 +65,8 @@ namespace Squishy.Suffix
 		}
 
 		/// <summary>
-		/// Add all nodes for the given string to the Tree
+		/// Add all nodes of Tree.String
 		/// </summary>
-		/// <param name="str"></param>
 		protected internal void BuildTree()
 		{
 			var str = Tree.String;
@@ -79,10 +78,10 @@ namespace Squishy.Suffix
 				return;
 			}
 
-			// add first node to tree
 			CurrentNode = Tree.Root;
 			Distance = 0;
 
+			// add first node to tree
 			new SuffixNode(Tree.Root, 0);
 			Tree.StringLength = 1;
 
